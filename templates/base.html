@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand text-light">Feedback</a>
+            <ul class="">
+                {% if session['username'] %}
+                <li class="nav-item">
+                    <a class="nav-link pr-3 text-light" href="/logout">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link pr-3 text-light" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/register">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="flash-container">
+            {% for category, msg in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{category}}">
+                <p>{{ msg }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="content-container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+
+</body>
+
+</html>
