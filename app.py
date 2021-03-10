@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, session, flash
 from models import Feedback, connect_db, db, User
 from sqlalchemy.exc import IntegrityError
 from forms import UserForm, LoginForm, FeedbackForm
-from utils import authenticated
+from utils import permitted, fetch_from_db
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///feedback_db"
@@ -83,7 +83,7 @@ def show_user(username):
     if 'username' not in session:
         flash('must login or register to view')
         return redirect('/')
-    if authenticated(username):
+    if permitted(username):
         user = User.query.get_or_404(username)
         feedbacks = user.feedbacks
         return render_template('secret.html', user=user, feedbacks=feedbacks)
@@ -101,7 +101,7 @@ def logout():
 @app.route('/users/<username>/delete')
 def user_delete(username):
     # TODOS: display warning before deleting user.
-    if authenticated(username):
+    if permitted(username):
         user = User.query.get_or_404(username)
         db.session.delete(user)
         db.session.commit()
@@ -111,8 +111,8 @@ def user_delete(username):
 
 
 @app.route('/users/<username>/feedback/add', methods=['GET', 'POST'])
-def new_feedb_form(username):
-    if authenticated(username):
+def feedb_add(username):
+    if permitted(username):
         form = FeedbackForm()
         if form.validate_on_submit():
             title = form.title.data
@@ -131,4 +131,40 @@ def new_feedb_form(username):
             return render_template('fb-form.html', form=form)
     else:
         flash('please login or register', 'error')
+        return redirect('/')
+
+
+@app.route('/feedback/<int:fb_id>/update', methods=["GET", "POST"])
+def feedback_update(fb_id):
+    fb = fetch_from_db(Feedback, fb_id)
+    username = fb.username
+    if permitted(username):
+
+        form = FeedbackForm(obj=fb)
+
+        if form.validate_on_submit():
+            fb.title = form.title.data
+            fb.content = form.content.data
+            db.session.commit()
+            flash("it's updated", 'success')
+            return redirect(f"/users/{username}")
+        else:
+            return render_template('fb-form.html', form=form)
+    else:
+        flash('not in your feedback list', 'error')
+        return redirect('/')
+
+
+@app.route('/feedback/<int:fb_id>/delete')
+def feedback_delete(fb_id):
+    fb = fetch_from_db(Feedback, fb_id)
+    username = fb.username
+    if permitted(username):
+        # TODOS: display warning before deleting
+        db.session.delete(fb)
+        db.session.commit()
+        flash("it's gone", 'sucess')
+        return redirect(f"/users/{username}")
+    else:
+        flash('must own fb to delete it', 'error')
         return redirect('/')
