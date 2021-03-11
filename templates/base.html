@@ -5,28 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
     <title>Feedback</title>
 </head>
 
 <body>
     <div class="container">
         <div class="navbar-container">
-            <a href="/" class="navbar-brand text-light">Feedback</a>
-            <ul class="">
+            <a href="/" class="navbar-brand">Feedback</a>
+            <ul class="nav-list">
                 {% if session['username'] %}
-                <li class="nav-item">
-                    <a class="nav-link pr-3 text-light" href="/logout">Logout</a>
+                <li class="navbar-item">
+                    <a class="nav-link username" href="">{{session['username']}}</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="/logout">Logout</a>
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link pr-3 text-light" href="/login">Login</a>
+                <li class="navbar-item">
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="/register">Register</a>
+                <li class="navbar-item">
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
                 {% endif %}
             </ul>
         </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
         <div class="flash-container">
             {% for category, msg in get_flashed_messages(with_categories=True) %}
             <div class="alert alert-{{category}}">
@@ -34,6 +40,8 @@
             </div>
             {% endfor %}
         </div>
+        {%endif%}
+        {% endwith %}
         <div class="content-container">
             {% block content %}
             {% endblock %}

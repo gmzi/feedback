@@ -1,0 +1,205 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* background-color:  */
+  background: linear-gradient(0.35turn, rgb(200, 73, 58), rgb(180, 3, 0));
+  min-height: 100vh;
+  width: auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.navbar-container,
+.flash-container {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0.5rem;
+  justify-content: space-between;
+}
+
+.navbar-brand,
+.navbar-item,
+.flash-container {
+  border: 1px solid yellow;
+  margin: 0rem 0.5rem;
+  text-align: center;
+}
+
+.navbar-brand,
+.flash-container {
+  border-radius: 10px;
+  padding: 1.5rem 0.5rem;
+}
+
+.navbar-item,
+ul {
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.navbar-brand,
+.nav-link,
+.flash-container {
+  color: yellow;
+  text-decoration: none;
+}
+
+.username {
+  color: yellow;
+}
+
+.content-container {
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 1rem 1rem;
+  padding: 0.5rem 0.5rem;
+  color: white;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+a {
+  color: rgb(0, 255, 76);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+form {
+  margin: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fiels-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.col-label {
+  margin: 0.5rem 0rem;
+}
+
+.form-label,
+.form-input {
+  border-radius: 3px;
+  border: none;
+}
+
+.form-input,
+.form-input:hover,
+.form-input:active,
+.form-input:focus {
+  padding: 0.5rem;
+  background-color: rgba(20, 43, 172, 0.925);
+  color: white;
+}
+
+.error-container {
+  margin: 1rem 0rem 0.2rem 0rem;
+  color: blue;
+  text-align: center;
+  background-color: white;
+  color: red;
+  font-weight: bolder;
+}
+.btn-container {
+  margin: 1rem;
+}
+
+button {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+button:hover,
+button:active {
+  background-color: rgb(236, 198, 26);
+  border: none;
+}
+
+h4 {
+  margin-bottom: 0.5rem;
+}
+
+.user-data,
+.feedbacks-container {
+  margin: 1rem 2rem;
+  padding: 0rem 1rem;
+}
+
+.data-list {
+  padding: 0rem 1rem;
+}
+
+.data-list li {
+  border-bottom: 1px solid yellow;
+}
+
+.fb {
+  border: 1px dashed white;
+  padding: 0.5rem 0.5rem;
+}
+
+.fb-title {
+  display: block;
+  color: rgb(236, 198, 26);
+  text-decoration: underline;
+  font-size: large;
+}
+
+.fb-content {
+  font-size: small;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem 0rem;
+  justify-content: space-between;
+}
+
+.col-edit,
+.col-delete {
+  margin: 0px 0.5em;
+  font-size: small;
+}
+
+.col-edit {
+  border-right: 1px solid springgreen;
+}
+
+.btn-add,
+.btn-del {
+  margin: 0rem 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: yellowgreen;
+  color: red;
+}
+
+.btn-add:hover,
+.btn-add:active,
+.btn-del:hover,
+.btn-del:active {
+  border: none;
+}
+
+.btn-add {
+  background-color: skyblue;
+  color: black;
+}
+
+.btn-del {
+  background-color: rgb(160, 9, 160);
+  color: white;
+}

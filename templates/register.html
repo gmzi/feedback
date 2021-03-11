@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Register</h1>
+<!-- <h1>Register</h1>
 <p class="lead">Register Below. Already have an account? <a href="/login">Login here</a></p>
 
 <form method="POST">
@@ -24,5 +24,32 @@
     {% endfor %}
 
     <button class="btn btn-success" type="submit">Register</button>
+</form> -->
+<h1>Register</h1>
+<p class="lead">Already a member? <a href="/login">Login here</a></p>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="fields-container">
+        {% for field in form
+        if field.widget.input_type != 'hidden' %}
+        <div class="row">
+            <div class="col-label">
+                {{ field.label(class_="form-label") }}
+            </div>
+            <div class="col-input">
+                {{ field(class_="form-input") }}
+            </div>
+        </div>
+        <div class="error-container">
+            {% for error in field.errors %}
+            <span class="form-error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="btn-container">
+        <button class="btn btn-success" type="submit">Register</button>
+    </div>
 </form>
 {% endblock %}

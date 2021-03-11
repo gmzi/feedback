@@ -25,7 +25,7 @@ def apply_caching(response):
 @app.route('/')
 def home():
     if 'username' not in session:
-        return redirect('/register')
+        return redirect('/login')
     else:
         username = session['username']
         return redirect(f"/users/{username}")
@@ -73,7 +73,7 @@ def login():
             session['username'] = user.username
             return redirect(f"/users/{username}")
         else:
-            form.username.errors = ['Bad name or pass']
+            form.password.errors = ['Bad name or pass']
     return render_template('login.html', form=form)
 
 
