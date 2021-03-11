@@ -6,7 +6,7 @@
 
 body {
   /* background-color:  */
-  background: linear-gradient(0.35turn, rgb(200, 73, 58), rgb(180, 3, 0));
+  background: linear-gradient(0.35turn, rgb(184, 55, 38), rgb(180, 3, 0));
   min-height: 100vh;
   width: auto;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
@@ -200,6 +200,7 @@ h4 {
 }
 
 .btn-del {
-  background-color: rgb(160, 9, 160);
+  background-color: rgb(160, 9, 9);
   color: white;
+  border: 1px solid white;
 }
